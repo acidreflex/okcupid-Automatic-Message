@@ -1,4 +1,5 @@
 # okcupid Automatic Message
+Just download the zip and extract the folder anywhere
 
 To Use this enter chrome://extensions in your address bar and load the "AutoMessage Extension" folder as an unpacked extension.
 
