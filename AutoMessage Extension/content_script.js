@@ -14,7 +14,6 @@ chrome.runtime.sendMessage('message', function(response) {
     });
 });
 
-
 function test(a){
     //opens all the profiles on the screen that haven't been messaged yet
     var allProfiles = document.getElementsByClassName("match_card_wrapper user-not-hidden matchcard-user");
@@ -59,13 +58,14 @@ function sleep(ms) {
 }
 
 function sendMessageToWindow(currentWindow){
-		
+		flag = true
 		//likes the profile
 		inputs5 = currentWindow.document.getElementsByClassName("profile-buttons-actions-action profile-buttons-actions-like");
 		for (var i = 0; i < inputs5.length; i++) {
 					if(inputs5[i].getAttribute("id") == "like-button"){
 						inputs5[i].click();
 
+						flag = false
 					}
 				}
 		
@@ -79,14 +79,12 @@ function sendMessageToWindow(currentWindow){
         inputs2[0].click(); */
 
 
-        //likes the profile again?
-		inputs5 = currentWindow.document.getElementsByClassName("profile-buttons-actions-action profile-buttons-actions-like");
-		for (var i = 0; i < inputs5.length; i++) {
-					if(inputs5[i].getAttribute("id") == "like-button"){
-						inputs5[i].click();
-
-					}
-				}
+        //if the profile is already liked
+		if(flag){
+			var xPathRes = currentWindow.document.evaluate ('//*[@id="profile_actions"]/div/div/span/div/div/button[2]/span[2]', currentWindow.document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+			xPathRes.singleNodeValue.click();
+		}
+		
 
 
 //for entering in the message
